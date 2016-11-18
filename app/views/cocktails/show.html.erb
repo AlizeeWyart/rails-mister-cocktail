@@ -1,19 +1,21 @@
 <%= render 'shared/modal_new_review' %>
-
+<div style="background-color: #F7F7F7">
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6">
+    <br/>
+    <div class="col-xs-12 col-sm-5" style="background-color: white; margin: 20px">
 
-      <h1><%= @cocktail.name%>
+      <h1 style="color: #2657C1"><%= @cocktail.name%>
       <% if @cocktail.reviews.count != 0 %>
         (<%= @cocktail.reviews.average('rating').round(1) %>/5)
       <% end %></h1>
       <p><%= @cocktail.description %></p>
 
-      <% if @cocktail.photo? %>
-        <%= cl_image_tag @cocktail.photo.path, width: 500, height: 300, crop: :fill %>
-      <% end %>
-      <br/>
+      <div style="border-style: solid; border-color: #FCD59B; border-radius: 5px;">
+        <% if @cocktail.photo? %>
+          <%= cl_image_tag @cocktail.photo.path, width: 450, height: 200, crop: :fill%>
+        <% end %>
+      </div>
 
       <h3>Reviews (<%= @cocktail.reviews.count %>) <a href="#" onmouseover="this.style.color='';" onmouseout="this.style.color='';" data-toggle="modal" data-target="#newReview"><i class="fa fa-plus" aria-hidden="true"></i></a></h3>
       <br/>
@@ -31,10 +33,6 @@
         <li><%= dose.description %> of <%= dose.ingredient.name %> <%= link_to "", cocktail_dose_path(@cocktail, dose), method: :delete, data: { confirm: "Are you sure?" }, class:"fa fa-trash-o" %></li>
       <% end %>
       </ul>
-    </div>
-  <div class="col-xs-12 col-sm-6">
-  </div>
-  <div class="col-xs-12 col-sm-6">
       <h3>Add an ingredient</h3>
       <%= simple_form_for [@cocktail, @dose] do |f| %>
         <%= f.error_notification %>
@@ -44,4 +42,5 @@
       <% end %>
     </div>
   </div>
+</div>
 </div>
