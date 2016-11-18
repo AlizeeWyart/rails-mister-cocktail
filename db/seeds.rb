@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Ingredient.destroy_all
+
+
 require 'json'
 require 'open-uri'
 
@@ -21,3 +24,16 @@ ingredients_hash["drinks"].each do |element|
   Ingredient.create(name: ingredient_name)
 end
 
+
+
+Cocktail.destroy_all
+
+## CREATE MOJITO
+mojito = Cocktail.create(name: "Mojito", description: "Cocktail à base de rhum né à Cuba dans les années 1910 et inspiré du mint julep")
+mojito.photo_url = "http://josephcphillips.com/wp-content/uploads/2015/04/tray-of-mojitos.jpg"
+mojito.save
+
+## CREATE SEX AND THE BEACH
+sex_and_beach = Cocktail.new(name: "Sex and the Beach", description: "Cocktail incontournable cree en 1980 au Balaboa Cafz de San Francisco")
+sex_and_beach.photo_url = "http://stevethebartender.com.au/wp-content/uploads/2013/06/sex-on-the-beach-cocktail.jpg"
+sex_and_beach.save

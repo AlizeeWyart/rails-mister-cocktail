@@ -1,27 +1,32 @@
 <%= render 'shared/banner' %>
 
-<h2 style="text-align: center">Inspire yourself with existing cocktails</h2>
+<h2 style="text-align: center">Get inspired</h2>
 <div style="padding: 30px"></div>
-<% @cocktails.each do |cocktail| %>
-<div class="product">
-  <div class='product-upvote'>
-    <div class="product-arrow"></div>
-    <div class='product-count'>95</div>
-  </div>
-  <img src="<%= cocktail.image_url%>" alt="<%= cocktail.name %>" class="product-image hidden-xs">
-  <div class='product-body'>
-    <h3><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
-    <p><%= cocktail.description %></p>
-  </div>
-  <ul class="list-inline product-controls hidden-sm hidden-xs">
-    <li><a href=""><i class="fa fa-heart"></i></a></li>
-    <li><a href=""><i class="fa fa-share"></i></a></li>
-    <li><a href=""><i class="fa fa-star"></i></a></li>
-  </ul>
+
+<div class="container">
+  <% @cocktails.each do |cocktail| %>
+    <div class="product">
+      <div class='product-upvote'>
+        <div class="product-arrow"></div>
+        <div class='product-count'>--</div>
+      </div>
+        <% if cocktail.photo? %>
+          <%= cl_image_tag cocktail.photo.path, width: 175, height: 110, radius:10, crop: :fill %>
+        <% else %>
+          <p> X </p>
+        <% end %>
+      <div class='product-body' style="margin-left: 20px">
+        <h3><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
+        <p><%= cocktail.description %></p>
+      </div>
+      <ul class="list-inline product-controls hidden-sm hidden-xs">
+        <li><a href=""><i class="fa fa-heart"></i></a></li>
+        <li><a href=""><i class="fa fa-share"></i></a></li>
+        <li><a href=""><i class="fa fa-star"></i></a></li>
+      </ul>
+    </div>
+  <% end %>
 </div>
-<% end %>
-
-
 
 
 

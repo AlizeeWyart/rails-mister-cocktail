@@ -10,7 +10,9 @@
 
   <body>
     <%= render 'shared/navbar' %>
+    <%= render 'shared/modal_new_cocktail' %>
     <%= yield %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= cloudinary_js_config %>
   </body>
 </html>

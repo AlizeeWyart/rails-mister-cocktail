@@ -1,11 +1,29 @@
+<%= render 'shared/modal_new_review' %>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-      <h1><%= @cocktail.name%> </h1>
+
+      <h1><%= @cocktail.name%>
+      <% if @cocktail.reviews.count != 0 %>
+        (<%= @cocktail.reviews.average('rating').round(1) %>/5)
+      <% end %></h1>
       <p><%= @cocktail.description %></p>
-      <img style="width: 100%" src="<%= @cocktail.image_url %>">
+
+      <% if @cocktail.photo? %>
+        <%= cl_image_tag @cocktail.photo.path, width: 500, height: 300, crop: :fill %>
+      <% end %>
+      <br/>
+
+      <h3>Reviews (<%= @cocktail.reviews.count %>) <a href="#" onmouseover="this.style.color='';" onmouseout="this.style.color='';" data-toggle="modal" data-target="#newReview"><i class="fa fa-plus" aria-hidden="true"></i></a></h3>
+      <br/>
+      <% @cocktail.reviews.each do |review| %>
+      <p><% review.rating.times do %> <i class="fa fa-star" aria-hidden="true"></i> <% end %>
+      <%= review.content %></p>
+      <% end %>
+      <br/>
     </div>
+
     <div class="col-xs-12 col-sm-6">
       <h3><br/>The ingredients</h3>
       <ul>

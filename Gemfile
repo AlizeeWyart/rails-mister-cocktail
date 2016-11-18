@@ -13,8 +13,13 @@ gem 'binding_of_caller'
 # RAKE GOOD :)
 gem 'rails-controller-testing'
 
-# CLOUDINARY
+# CACHER APPLICATION.YML
 gem 'figaro'
+
+# Gemfile
+gem "cloudinary", "1.1.0"
+gem "attachinary", github: "assembler/attachinary"
+gem "jquery-fileupload-rails"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
